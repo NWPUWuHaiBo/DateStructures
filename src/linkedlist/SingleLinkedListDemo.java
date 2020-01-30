@@ -1,11 +1,10 @@
-package com.atguigu.linkedlist;
+package linkedlist;
 
 import java.util.Stack;
 
 public class SingleLinkedListDemo {
 
 	public static void main(String[] args) {
-		//进行测试
 		//先创建节点
 		HeroNode hero1 = new HeroNode(1, "宋江", "及时雨");
 		HeroNode hero2 = new HeroNode(2, "卢俊义", "玉麒麟");
@@ -40,7 +39,6 @@ public class SingleLinkedListDemo {
 		singleLinkedList.addByOrder(hero2);
 		singleLinkedList.addByOrder(hero3);
 		
-		//显示一把
 		singleLinkedList.list();
 		
 		//测试修改节点的代码
@@ -98,8 +96,7 @@ public class SingleLinkedListDemo {
 		HeroNode next = null;// 指向当前节点[cur]的下一个节点
 		HeroNode reverseHead = new HeroNode(0, "", "");
 		//遍历原来的链表，每遍历一个节点，就将其取出，并放在新的链表reverseHead 的最前端
-		//动脑筋
-		while(cur != null) { 
+		while(cur != null) {
 			next = cur.next;//先暂时保存当前节点的下一个节点，因为后面需要使用
 			cur.next = reverseHead.next;//将cur的下一个节点指向新的链表的最前端
 			reverseHead.next = cur; //将cur 连接到新的链表上
@@ -160,7 +157,6 @@ public class SingleLinkedListDemo {
 }
 
 
-//定义SingleLinkedList 管理我们的英雄
 class SingleLinkedList {
 	//先初始化一个头节点, 头节点不要动, 不存放具体的数据
 	private HeroNode head = new HeroNode(0, "", "");
@@ -299,7 +295,7 @@ class SingleLinkedList {
 			}
 			//输出节点的信息
 			System.out.println(temp);
-			//将temp后移， 一定小心
+			//将temp后移
 			temp = temp.next;
 		}
 	}

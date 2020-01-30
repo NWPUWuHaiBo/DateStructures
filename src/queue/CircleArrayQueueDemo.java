@@ -6,7 +6,6 @@ public class CircleArrayQueueDemo {
 
 	public static void main(String[] args) {
 		
-		//测试一把
 		System.out.println("测试数组模拟环形队列的案例~~~");
 		
 		// 创建一个环形队列
@@ -126,7 +125,6 @@ class CircleArray {
 			return;
 		}
 		// 思路：从front开始遍历，遍历多少个元素
-		// 动脑筋
 		for (int i = front; i < front + size() ; i++) {
 			System.out.printf("arr[%d]=%d\n", i % maxSize, arr[i % maxSize]);
 		}

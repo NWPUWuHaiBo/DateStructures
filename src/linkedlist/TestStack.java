@@ -1,8 +1,7 @@
-package com.atguigu.linkedlist;
+package linkedlist;
 
 import java.util.Stack;
 
-//演示栈Stack的基本使用
 public class TestStack {
 
 	public static void main(String[] args) {

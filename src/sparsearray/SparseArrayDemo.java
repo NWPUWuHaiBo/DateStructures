@@ -2,87 +2,70 @@ package sparsearray;
 
 public class SparseArrayDemo {
 
-	public static void main(String[] args) {
-		// 创建一个原始的二维数组 11 * 11
-		// 0: 表示没有棋子， 1 表示 黑子 2 表蓝子
-		int chessArr1[][] = new int[11][11];
-		chessArr1[1][2] = 1;
-		chessArr1[2][3] = 2;
-		chessArr1[4][5] = 2;
-		// 输出原始的二维数组
-		System.out.println("原始的二维数组~~");
-		for (int[] row : chessArr1) {
-			for (int data : row) {
-				System.out.printf("%d\t", data);
-			}
-			System.out.println();
-		}
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        //创建一个二维数组
+        int array[][] = new int[11][11];
+        array[1][2] = 1;
+        array[2][3] = 2;
+        //打印一下原始数组
+        for (int[] is : array) {
+            for (int i : is) {
+                System.out.printf("%d\t", i);
+            }
+            System.out.println();
+        }
 
-		// 将二维数组 转 稀疏数组的思
-		// 1. 先遍历二维数组 得到非0数据的个数
-		int sum = 0;
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 11; j++) {
-				if (chessArr1[i][j] != 0) {
-					sum++;
-				}
-			}
-		}
+        //将原始数组转为稀疏数组
+        //1.遍历原始数组，获取非0数字的总数
+        int sum = 0;
+        for (int[] is : array) {
+            for (int i : is) {
+                if (i != 0) {
+                    sum++;
+                }
+            }
+        }
 
-		// 2. 创建对应的稀疏数组
-		int sparseArr[][] = new int[sum + 1][3];
-		// 给稀疏数组赋值
-		sparseArr[0][0] = 11;
-		sparseArr[0][1] = 11;
-		sparseArr[0][2] = sum;
+        //根据sum创建稀疏数组
+        int sparseArray[][] = new int[sum + 1][3];
+        sparseArray[0][0] = array.length;
+        sparseArray[0][1] = array[0].length;
+        sparseArray[0][2] = sum;
+        int count = 0;
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 11; j++) {
+                if (array[i][j] != 0) {
+                    count++;
+                    sparseArray[count][0] = i;
+                    sparseArray[count][1] = j;
+                    sparseArray[count][2] = array[i][j];
+                }
 
-		// 遍历二维数组，将非0的值存放到 sparseArr中
-		int count = 0; //count 用于记录是第几个非0数据
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 11; j++) {
-				if (chessArr1[i][j] != 0) {
-					count++;
-					sparseArr[count][0] = i;
-					sparseArr[count][1] = j;
-					sparseArr[count][2] = chessArr1[i][j];
-				}
-			}
-		}
+            }
+        }
 
-		// 输出稀疏数组的形式
-		System.out.println();
-		System.out.println("得到稀疏数组为~~~~");
-		for (int i = 0; i < sparseArr.length; i++) {
-			System.out.printf("%d\t%d\t%d\t\n", sparseArr[i][0], sparseArr[i][1], sparseArr[i][2]);
-		}
-		System.out.println();
+        //打印一下稀疏数组
+        for (int[] is : sparseArray) {
+            System.out.printf("%d\t%d\t%d\t\n", is[0], is[1], is[2]);
+        }
 
-		//将稀疏数组 --》 恢复成 原始的二维数组
-		/*
-		 *  1. 先读取稀疏数组的第一行，根据第一行的数据，创建原始的二维数组，比如上面的  chessArr2 = int [11][11]
-			2. 在读取稀疏数组后几行的数据，并赋给 原始的二维数组 即可.
-		 */
+        //将稀疏数组转成二维数组
+        int row = sparseArray[0][0];
+        int clo = sparseArray[0][1];
+        int array2[][] = new int[row][clo];
 
-		//1. 先读取稀疏数组的第一行，根据第一行的数据，创建原始的二维数组
-
-		int chessArr2[][] = new int[sparseArr[0][0]][sparseArr[0][1]];
-
-		//2. 在读取稀疏数组后几行的数据(从第二行开始)，并赋给 原始的二维数组 即可
-
-		for(int i = 1; i < sparseArr.length; i++) {
-			chessArr2[sparseArr[i][0]][sparseArr[i][1]] = sparseArr[i][2];
-		}
-
-		// 输出恢复后的二维数组
-		System.out.println();
-		System.out.println("恢复后的二维数组");
-
-		for (int[] row : chessArr2) {
-			for (int data : row) {
-				System.out.printf("%d\t", data);
-			}
-			System.out.println();
-		}
-	}
+        for (int i = 1; i < sparseArray.length; i++) {
+            array2[sparseArray[i][0]][sparseArray[i][1]] = sparseArray[i][2];
+        }
+        System.out.println("---------------------");
+        //打印一下原始数组
+        for (int[] is : array2) {
+            for (int i : is) {
+                System.out.printf("%d\t", i);
+            }
+            System.out.println();
+        }
+    }
 
 }
